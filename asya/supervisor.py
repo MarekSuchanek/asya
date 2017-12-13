@@ -56,8 +56,7 @@ class AsyaSupervisor:
 
     def report_issues_search_page(self, page, number):
         """
-        Method to be called before own processing of single
-        result page
+        Method to be called before own processing of single result page
 
         :param issue_search_page: page of issues search (data from API)
         :type issue_search_page: dict
@@ -68,7 +67,7 @@ class AsyaSupervisor:
 
     def report_issue(self, issue):
         """
-        Method to be called after own processing of a single comment
+        Method to be called after own processing of a single issue
 
         :param issue: GitHub issue (data from API)
         :type issue: dict
@@ -86,7 +85,7 @@ class AsyaSupervisor:
 
     def report_wait(self, active, headers):
         """
-        Method to be called whenever changing state of waiting
+        Method to be called whenever changing state of waiting (wait_rate_limit)
 
         :param active: flag if wait is starting or ending
         :type active: bool

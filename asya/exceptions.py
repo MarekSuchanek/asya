@@ -6,7 +6,7 @@ class AsyaException(Exception):
 
     :ivar data: API response data causing the exception
     :vartype data: dict
-    :ivar headers: API response headers causing the exception
+    :ivar headers: headers of the API response that caused the exception
     :vartype headers: dict
     """
 

@@ -6,8 +6,8 @@ class AsyaSupervisor:
     Supervisor for running the Asya gathering async procedure.
     It contains some procedure-wide setting and calls.
 
-    You should call supervisor's methods within the
-    procedure in the right places (described in docstrings):
+    The ``gather_acquaintances`` function must call supervisor's
+    ``report_`` methods at the right places (described in docstrings):
 
     .. code ::
 
@@ -33,8 +33,13 @@ class AsyaSupervisor:
 
     :ivar api_endpoint: API endpoint to be used for communication
     :ivar token: API token to be used (you can use ``has_token``)
-    :ivar wait_rate_limit: flag if should app wait for reset of the rate limit
-    :ivar skip_404: flag if should app skip 404 errors
+    :ivar wait_rate_limit:
+        True if the app should wait until the rate limit resets after it is
+        exceeded, False if exceeding the limit should cause
+        :exc:`~asya.exceptions.AsyaException`
+    :ivar skip_404:
+        True the app should skip 404 errors, False if they should
+        raise :exc:`~asya.exceptions.AsyaException`
     :ivar per_page: size of page for API requests
     """
 
@@ -51,12 +56,12 @@ class AsyaSupervisor:
 
     @property
     def has_token(self):
-        """Flag if the token is being set"""
+        """True if the API token is set"""
         return self.token is not None
 
     def report_issues_search_page(self, page, number):
         """
-        Method to be called before own processing of single result page
+        Method to be called before processing of a single result page
 
         :param issue_search_page: page of issues search (data from API)
         :type issue_search_page: dict
@@ -67,7 +72,7 @@ class AsyaSupervisor:
 
     def report_issue(self, issue):
         """
-        Method to be called after own processing of a single issue
+        Method to be called after processing of a single issue
 
         :param issue: GitHub issue (data from API)
         :type issue: dict
@@ -76,7 +81,7 @@ class AsyaSupervisor:
 
     def report_comment(self, comment):
         """
-        Method to be called after own processing of a single comment
+        Method to be called after processing of a single comment
 
         :param issue: GitHub comment (data from API)
         :type issue: dict
@@ -85,20 +90,22 @@ class AsyaSupervisor:
 
     def report_wait(self, active, headers):
         """
-        Method to be called whenever changing state of waiting (wait_rate_limit)
+        Method to be called whenever changing waiting state
+        (see ``wait_rate_limit``)
 
-        :param active: flag if wait is starting or ending
+        :param active: True if wait is starting, False if ending
         :type active: bool
-        :param headers: API response headers causing waiting
+        :param headers: headers of the API response that caused waiting
         :type headers: dict
         """
         self._do_callback('wait', active, headers)
 
     def report_skip(self, headers):
         """
-        Method to be called whenever you skip some result (skip_404)
+        Method to be called whenever some result is skipped
+        (see ``skip_404``)
 
-        :param headers: API response headers causing skipping
+        :param headers: headers of the API response that caused skipping
         :type headers: dict
         """
         if not self.skip_404:
@@ -116,3 +123,5 @@ class AsyaSupervisor:
             def callback(*args, **kwargs):
                 return self._do_callback(callback_name, *args, **kwargs)
             return callback
+
+        raise AttributeError(item)

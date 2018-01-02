@@ -208,7 +208,7 @@ def no_print(*args, **kwargs):
               help='How is given user involved in issues.')
 @click.option('--debug', is_flag=True, default=False,
               help='Debug mode (not catching other exceptions).')
-@click.version_option('0.0')
+@click.version_option('0.1-alt')
 def main(username, token, wait_rate_limit, sort, order, progress_bar, info,
          skip_404, text, involvement, api_endpoint, debug, **query_opts):
     """Asya Command Line Interface (via :mod:`click`)"""

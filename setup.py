@@ -5,7 +5,7 @@ with open('README.rst') as f:
 
 setup(
     name='asya',
-    version='0.0',
+    version='0.1',
     keywords='github issues social search asyncio comments issues',
     description='Asynchronously your acquaintances from GitHub issues',
     long_description=long_description,

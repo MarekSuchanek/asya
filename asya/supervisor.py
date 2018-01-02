@@ -63,10 +63,10 @@ class AsyaSupervisor:
         """
         Method to be called before processing of a single result page
 
-        :param issue_search_page: page of issues search (data from API)
-        :type issue_search_page: dict
-        :param page_number: number of the page
-        :type page_number: int
+        :param page: page of issues search (data from API)
+        :type page: dict
+        :param number: number of the page
+        :type number: int
         """
         self._do_callback('issues_search_page', page, number)
 
@@ -83,8 +83,8 @@ class AsyaSupervisor:
         """
         Method to be called after processing of a single comment
 
-        :param issue: GitHub comment (data from API)
-        :type issue: dict
+        :param comment: GitHub comment (data from API)
+        :type comment: dict
         """
         self._do_callback('comment', comment)
 

@@ -21,6 +21,7 @@ setup(
     },
     install_requires=[
         'aiohttp',
+        'requests',
         'click'
     ],
     python_requires='>=3.4',

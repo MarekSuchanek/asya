@@ -20,7 +20,6 @@ setup(
         ]
     },
     install_requires=[
-        'aiohttp',
         'requests',
         'click'
     ],

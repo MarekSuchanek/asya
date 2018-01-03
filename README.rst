@@ -1,7 +1,7 @@
 asya
 ====
 
-|license_badge| |rtd_badge|
+|license_badge| |rtd_badge| |pypi_badge|
 
 **AS**\ ynchronously-\ **Y**\ our-\ **A**\ cquaintances from `GitHub`_ issues
 
@@ -58,3 +58,7 @@ This project is licensed under the MIT License - see the `LICENSE`_ file for mor
 .. |rtd_badge| image:: https://readthedocs.org/projects/asya/badge/?version=latest
     :target: http://asya.readthedocs.io/en/latest/?badge=latest
     :alt: Documentation Status
+
+.. |pypi_badge| image:: https://badge.fury.io/py/asya.svg
+    :target: https://badge.fury.io/py/asya
+    :alt: Python Package Index
